@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>LATINO INCLUSIVO - PER MATTEO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Fredoka"', 'sans-serif'],
+              display: ['"Fredoka"', 'sans-serif'],
+            },
+            colors: {
+              'soft-blue': '#E0F2FE',
+              'soft-green': '#DCFCE7',
+              'soft-yellow': '#FEF9C3',
+              'action-blue': '#0284C7',
+              'role-subject': '#16A34A', 
+              'role-object': '#EA580C',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #F8FAFC;
+        overscroll-behavior-y: none;
+        text-transform: uppercase; /* FORZA STAMPATO MAIUSCOLO OVUNQUE */
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        user-select: none;
+      }
+      .shape-subject { border-radius: 9999px; } /* CERCHIO */
+      .shape-object { border-radius: 20%; }   /* QUADRATO ARROTONDATO */
+      
+      /* Animazione per il feedback positivo */
+      @keyframes pop {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.2); }
+        100% { transform: scale(1); }
+      }
+      .animate-pop { animation: pop 0.4s ease-out; }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
