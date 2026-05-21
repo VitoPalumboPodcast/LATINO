@@ -18,7 +18,7 @@ export default function App() {
   const [stars, setStars] = useState(() => Number(localStorage.getItem(STARS_KEY)) || 0);
   const [voiceSettings, setVoiceSettings] = useState<VoiceSettings>(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
-    return saved ? JSON.parse(saved) : { voiceURI: null, rate: 0.65, pitch: 1.0 }; // Velocità ridotta per Matteo
+    return saved ? JSON.parse(saved) : { voiceURI: null, rate: 0.65, pitch: 1.0 };
   });
 
   const addStar = () => {
@@ -57,12 +57,11 @@ export default function App() {
   const handleRestart = () => {
     setPhase(AppPhase.VOCABULARY);
     setStars(0);
-    localStorage.setItem(STARS_KEY, "0");
+    localStorage.setItem(STARS_KEY, '0');
   };
 
   const renderContent = () => {
     const props = { voiceSettings, onActionSuccess: addStar };
-    
     switch (phase) {
       case AppPhase.VOCABULARY:
         return <Phase0_Vocabulary data={VOCABULARY_DATA} onComplete={() => setPhase(AppPhase.FLASHCARDS)} {...props} />;
@@ -78,9 +77,9 @@ export default function App() {
         return (
           <div className="flex flex-col items-center justify-center h-full p-8 text-center animate-in zoom-in duration-500">
             <Trophy size={140} className="text-yellow-400 mb-6 drop-shadow-lg" />
-            <h1 className="text-6xl font-display font-bold text-slate-800 mb-4">BRAVO MATTEO!</h1>
+            <h1 className="text-6xl font-display font-bold text-slate-800 mb-4">OTTIMO LAVORO!</h1>
             <p className="text-3xl text-slate-500 mb-12">HAI VINTO {stars} STELLE!</p>
-            <button 
+            <button
               onClick={handleRestart}
               className="flex items-center gap-3 bg-action-blue text-white px-10 py-6 rounded-full text-2xl font-bold shadow-2xl hover:bg-sky-600 transition-all active:scale-90"
             >
@@ -88,14 +87,13 @@ export default function App() {
             </button>
           </div>
         );
-      default: return null;
+      default:
+        return null;
     }
   };
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
-      
-      {/* HEADER CON TOKEN ECONOMY */}
       <header className="bg-white border-b-4 border-slate-200 p-4 shadow-md sticky top-0 z-10">
         <div className="max-w-4xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-4">
@@ -104,26 +102,25 @@ export default function App() {
             </div>
             <span className="text-4xl font-bold text-slate-800">{stars}</span>
           </div>
-          
+
           <div className="text-center flex-grow mx-4">
-             <h1 className="text-2xl font-bold text-slate-400">LATINO FACILE</h1>
+            <h1 className="text-2xl font-bold text-slate-400">LATINO FACILE</h1>
           </div>
 
-          <button 
+          <button
             onClick={() => setIsAdminOpen(true)}
             className="p-3 bg-slate-100 text-slate-400 rounded-2xl hover:text-slate-800 transition-all border-2 border-slate-200"
+            aria-label="Apri impostazioni voce"
           >
             <Settings size={28} />
           </button>
         </div>
       </header>
 
-      {/* ADMIN PANEL */}
       {isAdminOpen && (
         <AdminPanel settings={voiceSettings} onSettingsChange={setVoiceSettings} onClose={() => setIsAdminOpen(false)} />
       )}
 
-      {/* AREA DI GIOCO */}
       <main className="flex-grow w-full max-w-4xl mx-auto py-8 px-4">
         {renderContent()}
       </main>
