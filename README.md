@@ -1,20 +1,31 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Latino Inclusivo - Ruoli e Forme
 
-# Run and deploy your AI Studio app
+App didattica inclusiva per introdurre alcune forme latine attraverso il ruolo logico:
 
-This contains everything you need to run your app locally.
+- `CHI FA?` = soggetto
+- `CHI SUBISCE?` = oggetto
 
-View your app in AI Studio: https://ai.studio/apps/drive/17fLKoQgDd3Yo965N4YEqgwnLe1zcyrj1
+L'app usa lessico visuale, flashcard, confronto guidato, scelta della forma corretta, sintesi vocale del browser e rinforzo a stelle.
 
-## Run Locally
+## Pubblicazione
 
-**Prerequisites:**  Node.js
+La pubblicazione su GitHub Pages e' configurata tramite GitHub Actions.
 
+URL atteso dopo il deploy:
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+https://vitopalumbopodcast.github.io/LATINO/
+
+## Sviluppo locale
+
+Prerequisito: Node.js.
+
+```bash
+npm install
+npm run dev
+```
+
+## Variabili ambiente
+
+Copiare `.env.example` in `.env.local` solo in locale, se serve una chiave Gemini.
+
+Non committare `.env.local`.
