@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-    <title>LATINO INCLUSIVO - PER MATTEO</title>
+    <title>LATINO INCLUSIVO</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
     <script>
@@ -11,15 +11,15 @@
         theme: {
           extend: {
             fontFamily: {
-              sans: ['"Fredoka"', 'sans-serif'],
-              display: ['"Fredoka"', 'sans-serif'],
+              sans: ['Fredoka', 'sans-serif'],
+              display: ['Fredoka', 'sans-serif'],
             },
             colors: {
               'soft-blue': '#E0F2FE',
               'soft-green': '#DCFCE7',
               'soft-yellow': '#FEF9C3',
               'action-blue': '#0284C7',
-              'role-subject': '#16A34A', 
+              'role-subject': '#16A34A',
               'role-object': '#EA580C',
             }
           }
@@ -30,15 +30,13 @@
       body {
         background-color: #F8FAFC;
         overscroll-behavior-y: none;
-        text-transform: uppercase; /* FORZA STAMPATO MAIUSCOLO OVUNQUE */
+        text-transform: uppercase;
         -webkit-touch-callout: none;
         -webkit-user-select: none;
         user-select: none;
       }
-      .shape-subject { border-radius: 9999px; } /* CERCHIO */
-      .shape-object { border-radius: 20%; }   /* QUADRATO ARROTONDATO */
-      
-      /* Animazione per il feedback positivo */
+      .shape-subject { border-radius: 9999px; }
+      .shape-object { border-radius: 20%; }
       @keyframes pop {
         0% { transform: scale(1); }
         50% { transform: scale(1.2); }
@@ -46,7 +44,7 @@
       }
       .animate-pop { animation: pop 0.4s ease-out; }
     </style>
-  <script type="importmap">
+    <script type="importmap">
 {
   "imports": {
     "react/": "https://esm.sh/react@^19.2.4/",
@@ -55,11 +53,12 @@
     "lucide-react": "https://esm.sh/lucide-react@^0.563.0"
   }
 }
-</script>
-<link rel="stylesheet" href="/index.css">
-</head>
+    </script>
+    <link rel="stylesheet" href="./index.css">
+  </head>
   <body>
     <div id="root"></div>
-  <script type="module" src="/index.tsx"></script>
-</body>
+    <script type="module" src="/src/main.tsx"></script>
+    <script type="module" src="/index.tsx"></script>
+  </body>
 </html>
