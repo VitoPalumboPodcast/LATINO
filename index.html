@@ -1,63 +1,119 @@
 <!DOCTYPE html>
 <html lang="it">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-    <title>LATINO INCLUSIVO</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Fredoka', 'sans-serif'],
-              display: ['Fredoka', 'sans-serif'],
-            },
-            colors: {
-              'soft-blue': '#E0F2FE',
-              'soft-green': '#DCFCE7',
-              'soft-yellow': '#FEF9C3',
-              'action-blue': '#0284C7',
-              'role-subject': '#16A34A',
-              'role-object': '#EA580C',
-            }
-          }
-        }
-      }
-    </script>
-    <style>
-      body {
-        background-color: #F8FAFC;
-        overscroll-behavior-y: none;
-        text-transform: uppercase;
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        user-select: none;
-      }
-      .shape-subject { border-radius: 9999px; }
-      .shape-object { border-radius: 20%; }
-      @keyframes pop {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.2); }
-        100% { transform: scale(1); }
-      }
-      .animate-pop { animation: pop 0.4s ease-out; }
-    </style>
-    <script type="importmap">
-{
-  "imports": {
-    "react/": "https://esm.sh/react@^19.2.4/",
-    "react": "https://esm.sh/react@^19.2.4",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
-    "lucide-react": "https://esm.sh/lucide-react@^0.563.0"
-  }
-}
-    </script>
-    <link rel="stylesheet" href="./index.css">
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/index.tsx"></script>
-  </body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>LATINO INCLUSIVO</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --blue:#0284c7; --green:#16a34a; --orange:#ea580c; --slate:#334155; --soft:#f8fafc; }
+    * { box-sizing: border-box; }
+    body { margin:0; min-height:100vh; background:var(--soft); font-family:Fredoka, Arial, sans-serif; color:var(--slate); text-transform:uppercase; user-select:none; }
+    header { position:sticky; top:0; z-index:2; background:white; border-bottom:4px solid #e2e8f0; box-shadow:0 8px 20px #0001; }
+    .bar { max-width:980px; margin:auto; padding:14px 18px; display:flex; align-items:center; justify-content:space-between; gap:14px; }
+    .stars { display:flex; align-items:center; gap:10px; font-size:34px; font-weight:700; }
+    .starbox { background:#facc15; color:white; border-radius:18px; padding:8px 12px; box-shadow:0 8px 16px #facc1540; }
+    h1 { margin:0; font-size:clamp(22px, 5vw, 34px); color:#94a3b8; text-align:center; }
+    main { max-width:980px; margin:auto; padding:26px 16px 42px; }
+    .screen { display:grid; gap:22px; }
+    .hero { text-align:center; display:grid; gap:10px; }
+    .hero h2 { margin:0; font-size:clamp(34px, 8vw, 58px); color:#1e293b; line-height:1; }
+    .hero p { margin:0; font-size:clamp(19px, 4vw, 28px); color:#64748b; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(270px, 1fr)); gap:18px; }
+    .card { background:white; border-radius:30px; padding:22px; box-shadow:0 16px 35px #0001; border-bottom:8px solid #e2e8f0; }
+    .word { display:flex; gap:18px; align-items:center; }
+    .emoji { font-size:60px; line-height:1; }
+    .title { font-size:30px; font-weight:700; color:#1e293b; margin-bottom:12px; }
+    .roles { display:grid; grid-template-columns:1fr 1fr; gap:10px; text-align:center; }
+    .role { border-radius:20px; padding:13px 8px; background:#f1f5f9; }
+    .role small { display:block; font-weight:700; color:#64748b; font-size:13px; }
+    .role b { display:block; font-size:27px; color:#1e293b; margin-top:4px; }
+    .subject { background:#dcfce7; color:#166534; }
+    .object { background:#ffedd5; color:#9a3412; }
+    .subject b { color:#166534; } .object b { color:#9a3412; }
+    button { font:inherit; border:0; cursor:pointer; transition:.15s transform, .15s filter; }
+    button:active { transform:scale(.96); }
+    .btn { border-radius:28px; padding:18px 28px; font-size:24px; font-weight:700; box-shadow:0 14px 25px #0002; }
+    .primary { background:var(--blue); color:white; }
+    .green { background:var(--green); color:white; } .orange { background:var(--orange); color:white; }
+    .ghost { background:white; color:#475569; border:2px solid #e2e8f0; box-shadow:0 8px 18px #0001; }
+    .center { text-align:center; }
+    .listen { margin-top:16px; font-size:17px; padding:11px 17px; border-radius:999px; background:white; color:#475569; border:2px solid #e2e8f0; box-shadow:0 6px 14px #0001; }
+    .bigcard { text-align:center; border-radius:42px; padding:32px; background:white; box-shadow:0 18px 40px #0001; }
+    .sentence { font-size:clamp(30px, 7vw, 52px); font-weight:700; color:#1e293b; line-height:1.08; }
+    .translation { margin-top:14px; font-size:clamp(20px, 4vw, 28px); color:#64748b; }
+    .feedback { min-height:48px; text-align:center; color:var(--blue); font-size:34px; font-weight:700; }
+    .badge { display:inline-flex; align-items:center; justify-content:center; color:white; font-size:25px; font-weight:700; padding:16px 24px; box-shadow:0 10px 20px #0002; }
+    .badge.subject { background:var(--green); border-radius:999px; } .badge.object { background:var(--orange); border-radius:22px; }
+    .options { display:grid; grid-template-columns:repeat(auto-fit, minmax(230px, 1fr)); gap:18px; }
+    .option-emoji { display:block; font-size:54px; margin-bottom:6px; }
+    .final { min-height:65vh; display:grid; place-items:center; text-align:center; }
+    .final .cup { font-size:120px; }
+    .settings { border-radius:18px; padding:12px 14px; background:#f1f5f9; color:#64748b; }
+    @media (max-width:520px){ .bar{padding:12px} .stars{font-size:26px} .word{align-items:flex-start}.emoji{font-size:48px}.title{font-size:25px}.btn{font-size:20px;padding:16px 20px}.card{padding:18px}.roles{grid-template-columns:1fr} }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="bar">
+      <div class="stars"><span class="starbox">★</span><span id="stars">0</span></div>
+      <h1>LATINO FACILE</h1>
+      <button class="settings" id="reset" aria-label="Ricomincia">↻</button>
+    </div>
+  </header>
+  <main id="app"></main>
+  <script>
+    const words = [
+      {id:'boy', it:'IL RAGAZZO', nom:'PUER', acc:'PUERUM', emoji:'👦'},
+      {id:'girl', it:'LA RAGAZZA', nom:'PUELLA', acc:'PUELLAM', emoji:'👧'},
+      {id:'apple', it:'LA MELA', nom:'MALUM', acc:'MALUM', emoji:'🍎'},
+      {id:'water', it:"L'ACQUA", nom:'AQUA', acc:'AQUAM', emoji:'💧'},
+      {id:'cat', it:'IL GATTO', nom:'FELES', acc:'FELEM', emoji:'🐱'},
+      {id:'rose', it:'LA ROSA', nom:'ROSA', acc:'ROSAM', emoji:'🌹'},
+      {id:'dog', it:'IL CANE', nom:'CANIS', acc:'CANEM', emoji:'🐶'}
+    ];
+    const identify = [
+      {s:'PUER MALUM EDIT', tr:'IL RAGAZZO MANGIA LA MELA', a:'PUER', ae:'👦', b:'MALUM', be:'🍎', ok:'PUER', se:'👦 🍎 🍽️'},
+      {s:'PUELLA AQUAM BIBIT', tr:"LA RAGAZZA BEVE L'ACQUA", a:'PUELLA', ae:'👧', b:'AQUAM', be:'💧', ok:'PUELLA', se:'👧 💧 🥤'},
+      {s:'MARCUS PUERUM SALUTAT', tr:'MARCO SALUTA IL RAGAZZO', a:'MARCUS', ae:'🙋', b:'PUERUM', be:'👦', ok:'MARCUS', se:'🙋 👦 👋'},
+      {s:'FELES MARCUM VIDET', tr:'IL GATTO VEDE MARCO', a:'FELES', ae:'🐱', b:'MARCUM', be:'🙋', ok:'FELES', se:'🐱 🙋 👁️'},
+      {s:'JULIA ROSAM VIDET', tr:'GIULIA VEDE LA ROSA', a:'ROSAM', ae:'🌹', b:'JULIA', be:'👩', ok:'JULIA', se:'👩 🌹 👁️'}
+    ];
+    const examples = {
+      boy:[['CHI FA?','PUER RIDET','IL RAGAZZO RIDE','PUER'],['CHI SUBISCE?','MARCUS PUERUM SALUTAT','MARCO SALUTA IL RAGAZZO','PUERUM']],
+      girl:[['CHI FA?','PUELLA CANTAT','LA RAGAZZA CANTA','PUELLA'],['CHI SUBISCE?','MARCUS PUELLAM AUDIT','MARCO SENTE LA RAGAZZA','PUELLAM']],
+      apple:[['CHI FA?','MALUM CADIT','LA MELA CADE','MALUM'],['CHI SUBISCE?','PUER MALUM EDIT','IL RAGAZZO MANGIA LA MELA','MALUM']],
+      water:[['CHI FA?','AQUA FLUIT',"L'ACQUA SCORRE",'AQUA'],['CHI SUBISCE?','PUELLA AQUAM BIBIT',"LA RAGAZZA BEVE L'ACQUA",'AQUAM']],
+      cat:[['CHI FA?','FELES DORMIT','IL GATTO DORME','FELES'],['CHI SUBISCE?','MARCUS FELEM AMAT','MARCO AMA IL GATTO','FELEM']],
+      rose:[['CHI FA?','ROSA FLORET','LA ROSA FIORISCE','ROSA'],['CHI SUBISCE?','MARCUS ROSAM VIDET','MARCO VEDE LA ROSA','ROSAM']],
+      dog:[['CHI FA?','CANIS CURRIT','IL CANE CORRE','CANIS'],['CHI SUBISCE?','MARCUS CANEM AUDIT','MARCO SENTE IL CANE','CANEM']]
+    };
+    const quiz = [
+      {it:'IL RAGAZZO MANGIA LA MELA', pre:'', post:'MALUM EDIT', ok:'PUER', wrong:'PUERUM', role:'CHI FA?'},
+      {it:'MARCO SALUTA IL RAGAZZO', pre:'MARCUS SALUTAT', post:'', ok:'PUERUM', wrong:'PUER', role:'CHI SUBISCE?'},
+      {it:"LA RAGAZZA BEVE L'ACQUA", pre:'', post:'AQUAM BIBIT', ok:'PUELLA', wrong:'PUELLAM', role:'CHI FA?'},
+      {it:"IL RAGAZZO BEVE L'ACQUA", pre:'PUER BIBIT', post:'', ok:'AQUAM', wrong:'AQUA', role:'CHI SUBISCE?'},
+      {it:'IL GATTO VEDE MARCO', pre:'', post:'MARCUM VIDET', ok:'FELES', wrong:'FELEM', role:'CHI FA?'},
+      {it:'MARCO AMA IL GATTO', pre:'MARCUS AMAT', post:'', ok:'FELEM', wrong:'FELES', role:'CHI SUBISCE?'}
+    ];
+    let phase = 0, i = 0, stars = Number(localStorage.getItem('latin_stars') || 0), feedback='';
+    const app = document.getElementById('app'), starEl=document.getElementById('stars');
+    function saveStars(){ starEl.textContent=stars; localStorage.setItem('latin_stars', String(stars)); }
+    function addStar(){ stars++; saveStars(); }
+    function speak(text){ if(!('speechSynthesis' in window)) return; speechSynthesis.cancel(); const u=new SpeechSynthesisUtterance(text); u.lang='it-IT'; u.rate=.72; speechSynthesis.speak(u); }
+    function btn(text, cls, fn){ return `<button class="btn ${cls}" data-action="${fn}">${text}</button>`; }
+    function listen(text){ return `<button class="listen" data-say="${encodeURIComponent(text)}">🔊 ASCOLTA</button>`; }
+    function render(){ saveStars(); if(phase===0) vocab(); else if(phase===1) flash(); else if(phase===2) identification(); else if(phase===3) compare(); else if(phase===4) discriminate(); else done(); bind(); }
+    function vocab(){ app.innerHTML=`<section class="screen"><div class="hero"><h2>CONOSCIAMO LE PAROLE</h2><p>GUARDA, LEGGI E ASCOLTA.</p></div><div class="grid">${words.map(w=>`<article class="card"><div class="word"><span class="emoji">${w.emoji}</span><div><div class="title">${w.it}</div><div class="roles"><div class="role subject"><small>CHI FA?</small><b>${w.nom}</b></div><div class="role object"><small>CHI SUBISCE?</small><b>${w.acc}</b></div></div>${listen(`${w.it}. ${w.nom}. ${w.acc}`)}</div></div></article>`).join('')}</div><div class="center">${btn('CONTINUA','primary','next')}</div></section>`; }
+    function flash(){ const w=words[i]; app.innerHTML=`<section class="screen center"><div class="hero"><h2>FLASHCARD</h2></div><article class="bigcard"><div class="emoji">${w.emoji}</div><div class="sentence">${w.it}</div><div class="roles" style="margin-top:20px"><div class="role subject"><small>CHI FA?</small><b>${w.nom}</b></div><div class="role object"><small>CHI SUBISCE?</small><b>${w.acc}</b></div></div>${listen(`${w.it}. ${w.nom}. ${w.acc}`)}</article>${btn(i===words.length-1?'PASSA AGLI ESERCIZI':'AVANTI','primary','next')}</section>`; }
+    function identification(){ const q=identify[i]; app.innerHTML=`<section class="screen center"><div class="hero"><h2>CHI FA L'AZIONE?</h2></div><article class="bigcard"><div class="emoji">${q.se}</div><div class="sentence">${q.s}</div><div class="translation">${q.tr}</div>${listen(`${q.s}. ${q.tr}`)}</article><div class="options"><button class="btn green" data-pick="${q.a}"><span class="option-emoji">${q.ae}</span>${q.a}</button><button class="btn orange" data-pick="${q.b}"><span class="option-emoji">${q.be}</span>${q.b}</button></div><div class="feedback">${feedback}</div></section>`; }
+    function compare(){ const w=words[i], ex=examples[w.id]; app.innerHTML=`<section class="screen center"><div class="hero"><h2>CONFRONTA LE FORME</h2></div><div class="emoji">${w.emoji}</div><div class="grid">${ex.map(e=>`<article class="card center"><div class="badge ${e[0]==='CHI FA?'?'subject':'object'}">${e[0]}</div><div class="sentence" style="margin-top:16px">${e[3]}</div><div class="translation">${e[1]}</div><p>${e[2]}</p>${listen(`${e[1]}. ${e[2]}`)}</article>`).join('')}</div>${btn(i===words.length-1?'FACCIAMO IL QUIZ':'AVANTI','primary','next')}</section>`; }
+    function discriminate(){ const q=quiz[i], ops=i%2?[q.wrong,q.ok]:[q.ok,q.wrong]; app.innerHTML=`<section class="screen center"><div class="hero"><h2>SCEGLI LA FORMA</h2></div><article class="bigcard"><div class="badge ${q.role==='CHI FA?'?'subject':'object'}">${q.role}</div><div class="translation">${q.it}</div><div class="sentence" style="margin-top:18px">${q.pre} <span style="background:#fef9c3;border-radius:18px;padding:4px 18px">?</span> ${q.post}</div>${listen(q.it)}</article><div class="options">${ops.map(o=>`<button class="btn primary" data-pick="${o}">${o}</button>`).join('')}</div><div class="feedback">${feedback}</div></section>`; }
+    function done(){ app.innerHTML=`<section class="final"><div><div class="cup">🏆</div><h2 class="sentence">OTTIMO LAVORO!</h2><p class="translation">HAI VINTO ${stars} STELLE!</p>${btn('GIOCA ANCORA','primary','restart')}</div></section>`; }
+    function next(){ addStar(); feedback=''; if(phase===0){phase=1;i=0}else if(phase===1&&i<words.length-1)i++; else if(phase===1){phase=2;i=0}else if(phase===3&&i<words.length-1)i++; else if(phase===3){phase=4;i=0}else render(); render(); }
+    function pick(v){ const q=phase===2?identify[i]:quiz[i]; const ok=phase===2?q.ok:q.ok; if(v===ok){ addStar(); feedback='GIUSTO!'; render(); setTimeout(()=>{feedback=''; if(phase===2&&i<identify.length-1)i++; else if(phase===2){phase=3;i=0}else if(phase===4&&i<quiz.length-1)i++; else if(phase===4){phase=5;i=0} render();},650);} else {feedback='RIPROVA'; render();} }
+    function bind(){ document.querySelectorAll('[data-say]').forEach(b=>b.onclick=()=>speak(decodeURIComponent(b.dataset.say))); document.querySelectorAll('[data-action="next"]').forEach(b=>b.onclick=next); document.querySelectorAll('[data-action="restart"]').forEach(b=>b.onclick=()=>{phase=0;i=0;stars=0;feedback='';saveStars();render();}); document.querySelectorAll('[data-pick]').forEach(b=>b.onclick=()=>pick(b.dataset.pick)); }
+    document.getElementById('reset').onclick=()=>{phase=0;i=0;stars=0;feedback='';saveStars();render();}; render();
+  </script>
+</body>
 </html>
